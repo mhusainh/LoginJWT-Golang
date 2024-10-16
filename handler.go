@@ -80,7 +80,7 @@ func RoleMiddleware(role string) echo.MiddlewareFunc {
                 fmt.Println("Role not found or not a string in token claims")
                 return c.JSON(http.StatusUnauthorized, echo.Map{"error": "Invalid role in token"})
             }
-            if userRole != role && userRole != "Admin" {
+            if userRole != role {
                 return c.JSON(http.StatusForbidden, echo.Map{"error": "Access forbidden"})
             }
             return next(c)
